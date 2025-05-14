@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -13,7 +14,7 @@ const blogPosts = [
     date: "May 10, 2025",
     author: "Emma Johnson",
     category: "Sustainability",
-    slug: "sustainable-farming-practices-2025",
+    slug: "sustainable-farming-practices-2025"
   },
   {
     title: "The Future of Irrigation: Smart Water Management",
@@ -22,7 +23,7 @@ const blogPosts = [
     date: "May 5, 2025",
     author: "Michael Chen",
     category: "Technology",
-    slug: "future-irrigation-smart-water-management",
+    slug: "future-irrigation-smart-water-management"
   },
   {
     title: "Organic Pest Control: Natural Solutions for Farmers",
@@ -31,16 +32,15 @@ const blogPosts = [
     date: "April 28, 2025",
     author: "Sarah Williams",
     category: "Organic Farming",
-    slug: "organic-pest-control-natural-solutions",
+    slug: "organic-pest-control-natural-solutions"
   },
 ]
 
 export function BlogSection() {
   const pageTitle = "Agricultural Blog | Latest Farming Tips & News"
-  const pageDescription =
-    "Stay updated with the latest agricultural insights, sustainable farming practices, technology advancements, and organic farming tips."
+  const pageDescription = "Stay updated with the latest agricultural insights, sustainable farming practices, technology advancements, and organic farming tips."
   const canonicalUrl = "https://yourwebsite.com/blog"
-
+  
   return (
     <>
       <Head>
@@ -54,12 +54,9 @@ export function BlogSection() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
-        <meta
-          name="keywords"
-          content="sustainable farming, agriculture, irrigation, organic farming, farming technology, pest control"
-        />
+        <meta name="keywords" content="sustainable farming, agriculture, irrigation, organic farming, farming technology, pest control" />
       </Head>
-
+      
       <section className="w-full py-20 bg-white" id="blog" aria-label="Latest blog posts">
         <div className="container px-4 md:px-6">
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 [--animation-delay:200ms] view-once:run-once">
@@ -90,7 +87,11 @@ export function BlogSection() {
                   </div>
                 </div>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-xl text-green-800">{post.title}</CardTitle>
+                  <CardTitle className="text-xl text-green-800 group-hover:text-green-600 transition-colors">
+                    <Link href={`#${post.slug}`} passHref legacyBehavior>
+                      <a className="hover:underline">{post.title}</a>
+                    </Link>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-green-700 text-base mb-4">{post.excerpt}</CardDescription>
@@ -106,20 +107,21 @@ export function BlogSection() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <span
-                    className="inline-flex items-center text-green-700 font-medium cursor-default opacity-80"
+                  <Link
+                    href={`#${post.slug}`}
+                    className="inline-flex items-center text-green-700 font-medium hover:text-green-800 transition-colors"
                     aria-label={`Read more about ${post.title}`}
                   >
                     Read More <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </span>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}
           </div>
 
           <div className="mt-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-700 [--animation-delay:600ms] view-once:run-once">
-            <Button className="bg-green-700 hover:bg-green-700 cursor-not-allowed opacity-80" disabled>
-              View All Articles
+            <Button className="bg-green-700 hover:bg-green-800">
+              <Link href="#" className="text-white">View All Articles</Link>
             </Button>
           </div>
         </div>
