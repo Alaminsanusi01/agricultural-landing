@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import Head from "next/head"
 
 export function ProductsSection() {
@@ -59,26 +58,16 @@ export function ProductsSection() {
         <link rel="preload" href={products[0].image} as="image" />
       </Head>
 
-      <section
-        className="w-full py-20 bg-white"
-        id="products"
-        aria-label="Featured sustainable agricultural products"
-      >
+      <section className="w-full py-20 bg-white" id="products" aria-label="Featured sustainable agricultural products">
         <div className="container px-4 md:px-6">
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 view-once:run-once">
-            <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">
-              Featured Products
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">Featured Products</h2>
             <p className="text-lg text-green-700 max-w-3xl mx-auto">
               Quality agricultural supplies designed with sustainability in mind
             </p>
           </div>
 
-          <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            itemScope
-            itemType="https://schema.org/ItemList"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8" itemScope itemType="https://schema.org/ItemList">
             {products.map((product, index) => (
               <div
                 key={product.slug}
@@ -90,7 +79,7 @@ export function ProductsSection() {
               >
                 <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                   <Image
-                    src={product.image}
+                    src={product.image || "/placeholder.svg"}
                     alt={product.alt}
                     fill
                     loading={index === 0 ? "eager" : "lazy"}
@@ -106,20 +95,16 @@ export function ProductsSection() {
                 >
                   {product.name}
                 </h3>
-                <p
-                  className="text-green-700 text-center mb-4"
-                  itemProp="description"
-                >
+                <p className="text-green-700 text-center mb-4" itemProp="description">
                   {product.description}
                 </p>
-                <Link
-                  href={`/products/${product.slug}`}
+                <Button
+                  className="bg-green-700 hover:bg-green-700 transition-all duration-300 cursor-not-allowed opacity-80"
                   aria-label={`Learn more about ${product.name}`}
+                  disabled
                 >
-                  <Button className="bg-green-700 hover:bg-green-800 transition-all duration-300 hover:translate-y-[-4px]">
-                    Learn More
-                  </Button>
-                </Link>
+                  Learn More
+                </Button>
 
                 <meta itemProp="url" content={`/products/${product.slug}`} />
               </div>
