@@ -36,10 +36,16 @@ export function FeaturesSection() {
   ]
 
   return (
-    <section className="w-full py-20 bg-green-50" id="services">
+    <section
+      className="w-full py-20 bg-green-50"
+      id="services"
+      aria-label="Sustainable Agricultural Features"
+    >
       <div className="container px-4 md:px-6">
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 view-once:run-once">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">Sustainable Agricultural Solutions</h2>
+        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">
+            Sustainable Agricultural Solutions
+          </h2>
           <p className="text-lg text-green-700 max-w-3xl mx-auto">
             Our innovative approaches to farming combine traditional wisdom with cutting-edge technology
           </p>
@@ -49,8 +55,8 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="border-green-200 bg-white hover:shadow-lg transition-all duration-300 group animate-in fade-in slide-in-from-bottom-8 duration-700 [--animation-delay:200ms] view-once:run-once"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="border-green-200 bg-white hover:shadow-lg transition-all duration-300 group animate-in fade-in slide-in-from-bottom-8 duration-700"
+              style={{ animationDelay: `0ms` }} // No staggered delay
             >
               <CardHeader>
                 <div className="mb-2 transform group-hover:scale-110 transition-transform duration-300">
@@ -61,7 +67,9 @@ export function FeaturesSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-green-700 text-base">{feature.description}</CardDescription>
+                <CardDescription className="text-green-700 text-base">
+                  {feature.description}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}
